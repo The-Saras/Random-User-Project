@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      background-color: #025464;
+    }
+    h1 {
+      font-family: "Signika Negative", sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      color: #172022;
+      margin: 15;
+      text-align: center;
+    }
+    .button {
+      display: inline-block;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-family: "Signika Negative", sans-serif;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      background-color: #4caf50;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #45a049;
+    }
+
+    .button:active {
+      background-color: #3e8e41;
+    }
+    .container {
+      background-color: #e8aa42;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 10px 5px rgba(0, 0, 0, 0.1);
+    }
+    .cnt {
+      display: inline;
+      justify-content: center;
+      align-items: center;
+    }
+    .cnt1 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 20px;
+    }
+  </style>
+  <body>
+    <div class="cnt">
+      <div class="container">
+        <h1 id="name"></h1>
+        <h1 id="lname"></h1>
+        <h1 id="country"></h1>
+        <h1 id="city"></h1>
+        <h1 id="age"></h1>
+        <h1 id="job"></h1>
+      </div>
+    </div>
+
+    <div class="cnt1">
+      <button onclick="makeRequest()" class="button">Generate User</button>
+    </div>
+    <script>
+      async function makeRequest() {
+        try {
+          const response = await fetch("http://localhost:3000/randomUser");
+          const data = await response.json();
+
+          var nameEle = document.getElementById("name");
+          nameEle.textContent = data.fName;
+
+          var lnameEle = document.getElementById("lname");
+          lnameEle.textContent = data.lName;
+
+          var countryEle = document.getElementById("country");
+          countryEle.textContent = data.country;
+
+          var cityEle = document.getElementById("city");
+          cityEle.textContent = data.city;
+
+          var ageEle = document.getElementById("age");
+          ageEle.textContent = data.age;
+
+          var jobEle = document.getElementById("job");
+          jobEle.textContent = data.job;
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      //makeRequest();
+    </script>
+  </body>
+</html>
