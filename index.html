@@ -104,7 +104,9 @@
           var jobEle = document.getElementById("job");
           jobEle.textContent = data.job;
         } catch (error) {
-          console.error(error);
+          return res.status(200).json({
+            error: "connection error",
+          });
         }
       }
 
